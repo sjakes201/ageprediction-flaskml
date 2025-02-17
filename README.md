@@ -17,8 +17,8 @@ Instructions:
 
 The expected file structure is now:
 
-ageprediction-flaskml/
-├── TestImages/              # Example images you can use to test the model
+ageprediction-flaskml/ \n
+├── TestImages/              # Example images you can use to test the model \n
 ├── image-1.png              # Screenshot of example Postman call
 ├── model_server.py          # Main Flask-ML server file
 ├── vit_age_classifier.onnx  # ONNX model
