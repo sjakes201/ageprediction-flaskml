@@ -1,0 +1,4 @@
+flask_ml
+onnxruntime
+Pillow
+numpy
