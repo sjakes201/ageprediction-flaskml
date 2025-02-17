@@ -16,15 +16,15 @@ Instructions:
 5. Put this ONNX file in the root of the ageprediction-flaskml directory
 
 The expected file structure is now:
-dd
-ageprediction-flaskml/ \n
-├── TestImages/              # Example images you can use to test the model \n
+```
+ageprediction-flaskml/
+├── TestImages/              # Example images you can use to test the model
 ├── image-1.png              # Screenshot of example Postman call
 ├── model_server.py          # Main Flask-ML server file
 ├── vit_age_classifier.onnx  # ONNX model
 ├── requirements.txt         # Python dependencies
 ├── README.md                # Documentation (this file)
-
+```
 6. Run model_server.py with "py model_server.py"
     - This will run on port 5000 by default but optionally specify a port in the command line by appending --port {desired port}
     - For example "py model_server.py --port 5400" to open in port 5400
