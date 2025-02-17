@@ -11,6 +11,10 @@ Instructions:
 
 3. Install requirements with "pip install -r requirements.txt"
 
+4. Go to this Google Drive link https://drive.google.com/file/d/1jV8k_OlxZN86mCZuY7Oc9_vrAhInfdHc/view?usp=sharing and download the ONNX file for this model. The file is too large for github. It will be named vit_age_classifier.onnx
+
+5. Put this ONNX file in the root of the ageprediction-flaskml directory
+
 The expected file structure is now:
 
 ageprediction-flaskml/
@@ -21,14 +25,14 @@ ageprediction-flaskml/
 ├── requirements.txt         # Python dependencies
 ├── README.md                # Documentation (this file)
 
-4. Run model_server.py with "py model_server.py"
+6. Run model_server.py with "py model_server.py"
     - This will run on port 5000 by default but optionally specify a port in the command line by appending --port {desired port}
     - For example "py model_server.py --port 5400" to open in port 5400
 
-5. You can now access the endpoint locally at http://127.0.0.1:5000 endpoint "predict_age" (change 5000 to your custom port if used)
+7. You can now access the endpoint locally at http://127.0.0.1:5000 endpoint "predict_age" (change 5000 to your custom port if used)
     - The images you upload must be PNG or JPEG
 
-6. The endpoint can be used via any http requesting method. For example in Postman you can setup the following request format:
+8. The endpoint can be used via any http requesting method. For example in Postman you can setup the following request format:
     - POST method
     - HTTP address "http://127.0.0.1:5000/predict_age"
     - Choose 'Body' as params, and form-data to upload images directly
