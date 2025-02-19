@@ -6,6 +6,7 @@ from flask_ml.flask_ml_server import MLServer, load_file_as_string
 from flask_ml.flask_ml_server.models import ResponseBody
 from flask import request, jsonify
 
+
 # Preprocessing
 def preprocess_image(image_bytes, target_size=224):
     """
@@ -26,6 +27,7 @@ def preprocess_image(image_bytes, target_size=224):
     image_np = np.expand_dims(image_np, axis=0)
     return image_np
 
+
 # Postprocessing
 def postprocess_output(logits):
     """
@@ -35,6 +37,7 @@ def postprocess_output(logits):
     probabilities = exp_logits / np.sum(exp_logits, axis=1, keepdims=True)
     predicted_classes = np.argmax(probabilities, axis=1)
     return predicted_classes, probabilities
+
 
 # Mapping from classification ids to age ranges
 id2label = {
@@ -46,7 +49,7 @@ id2label = {
     5: "40-49",
     6: "50-59",
     7: "60-69",
-    8: "more than 70"
+    8: "more than 70",
 }
 
 # Load ONNX model
@@ -59,10 +62,11 @@ server.add_app_metadata(
     name="Vit Age Classifier",
     author="",
     version="1.0.0",
-    info="Age classifier using ViT exported to ONNX."
+    info="Age classifier using ViT exported to ONNX.",
 )
 
-# Custom Endpoint for Batch Image Upload 
+
+# Custom Endpoint for Batch Image Upload
 @server.app.route("/predict_age", methods=["POST"])
 def predict_age_plain():
     # Get a list of files uploaded with key "image"
@@ -91,16 +95,17 @@ def predict_age_plain():
         predicted_classes, _ = postprocess_output(logits)
         # Map each predicted class to its label
         predicted_labels = [id2label.get(cls, "Unknown") for cls in predicted_classes]
-        return jsonify({
-            "predicted_labels": predicted_labels
-        })
+        return jsonify({"predicted_labels": predicted_labels})
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
+
 import argparse
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Run the Vit Age Classifier Server")
-    parser.add_argument("--port", type=int, default=5000, help="Port number to run the server")
+    parser.add_argument(
+        "--port", type=int, default=5000, help="Port number to run the server"
+    )
     args = parser.parse_args()
     server.run(port=args.port)
-

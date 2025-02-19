@@ -19,6 +19,7 @@ The expected file structure is now:
 ```
 ageprediction-flaskml/
 ├── TestImages/              # Example images you can use to test the model
+├── convert_to_onnx.py       # The script I used to convert the model to onnx
 ├── image-1.png              # Screenshot of example Postman call
 ├── model_server.py          # Main Flask-ML server file
 ├── vit_age_classifier.onnx  # ONNX model
@@ -41,3 +42,8 @@ ageprediction-flaskml/
 
 Example Postman request with results:
 ![alt text](image-1.png)
+
+
+ONNX info:
+Since the original model uses torch, I was able to use the torch.onnx.export function. I have attached the code snippet that I used, it is the file convert_to_onnx.py. Because I was pulling the model from HuggingFace, I did not download a copy of the model locally. Here is a link to the model: 
+https://huggingface.co/nateraw/vit-age-classifier
